@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+        {% for post in all_posts %}
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <img class="card-img-top" src="https://picsum.photos/750/300" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="d-inline-block">{{ post.title }}</h2>
+            <a href="{{ url_for('edit_entry', entry_id=post.id) }}">
+              <button class="btn btn-link float-right" type="button" aria-label="Pencil">
+                  <span class="fas fa-pencil-alt" aria-hidden="true"></span>
+              </button>
+              </a>
+            <p class="card-text">{{ post.body }}</p>
+            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on {{ post.pub_date.strftime('%Y-%m-%d') }}
+          </div>
+        </div>
+        {% endfor %}
+
+{% endblock %}
