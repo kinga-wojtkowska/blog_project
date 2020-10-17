@@ -3,6 +3,7 @@ from blog import db, app
 from blog.models import Entry
 from blog.forms import EntryForm
 
+
 @app.route("/")
 def homepage():
     all_posts = Entry.query.filter_by(is_published=True).order_by(Entry.pub_date.desc())
