@@ -4,3 +4,5 @@
 3. It can be used as a reflection journal.
 4. Reading posts is for all users.
 5. Other command like: add, edit, delete, are available only after logging in.
+
+6. https://personalblog-kw.herokuapp.com
