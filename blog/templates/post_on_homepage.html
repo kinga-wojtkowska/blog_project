@@ -9,18 +9,37 @@
           <img class="card-img-top" src="https://picsum.photos/750/300" alt="Card image cap">
           <div class="card-body">
             <h2 class="d-inline-block">{{ post.title }}</h2>
-            <a href="{{ url_for('edit_entry', entry_id=post.id) }}">
-              <button class="btn btn-link float-right" type="button" aria-label="Pencil">
+            {% if session.logged_in %}
+              <div class="d-inline-block float-right">
+              <a href="{{ url_for('edit_entry', entry_id=post.id) }}">
+              <button class="btn btn-link" type="button" aria-label="Pencil">
                   <span class="fas fa-pencil-alt" aria-hidden="true"></span>
               </button>
               </a>
+              </div>
+              <form class="form-inline my-2 my-lg-0 float-right" action="{{ url_for('delete_entry', entry_id=post.id) }}" method="POST">
+                <button class="btn btn-link" type="submit" aria-label="Trash_Bin">
+                    <span class="fas fa-trash-alt" aria-hidden="true"></span>
+                </button>
+              </form>
+            {% endif %}
             <p class="card-text">{{ post.body }}</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+            <!--<a href="#" class="btn btn-primary">Read More &rarr;</a>-->
           </div>
           <div class="card-footer text-muted">
             Posted on {{ post.pub_date.strftime('%Y-%m-%d') }}
           </div>
         </div>
         {% endfor %}
+
+        <!-- Pagination -->
+        <!--<ul class="pagination justify-content-center mb-4">
+          <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+          </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+          </li>
+        </ul>-->
 
 {% endblock %}
